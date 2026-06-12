@@ -31,18 +31,13 @@
     </menu2>
 
     <menu2 id="ClockSizeMenu" title="Clock Size">
-        <menu-item id="clock_size_18" label="18" />
-        <menu-item id="clock_size_22" label="22" />
         <menu-item id="clock_size_24" label="24" />
         <menu-item id="clock_size_28" label="28" />
-        <menu-item id="clock_size_30" label="30" />
         <menu-item id="clock_size_36" label="36" />
-        <menu-item id="clock_size_44" label="44" />
         <menu-item id="clock_size_52" label="52" />
-        <menu-item id="clock_size_60" label="60" />
         <menu-item id="clock_size_68" label="68" />
-        <menu-item id="clock_size_76" label="76" />
         <menu-item id="clock_size_84" label="84" />
+
     </menu2>
 
     <menu2 id="FontColorMenu" title="Color">
@@ -73,48 +68,33 @@
     </menu2>
 
     <menu2 id="HebrewDateSizeMenu" title="Hebrew Date Size">
-        <menu-item id="clock_size_18" label="18" />
-        <menu-item id="clock_size_22" label="22" />
         <menu-item id="clock_size_24" label="24" />
         <menu-item id="clock_size_28" label="28" />
-        <menu-item id="clock_size_30" label="30" />
         <menu-item id="clock_size_36" label="36" />
-        <menu-item id="clock_size_44" label="44" />
         <menu-item id="clock_size_52" label="52" />
-        <menu-item id="clock_size_60" label="60" />
         <menu-item id="clock_size_68" label="68" />
-        <menu-item id="clock_size_76" label="76" />
         <menu-item id="clock_size_84" label="84" />
+
     </menu2>
 
     <menu2 id="ParashaSizeMenu" title="Parasha Size">
-        <menu-item id="clock_size_18" label="18" />
-        <menu-item id="clock_size_22" label="22" />
         <menu-item id="clock_size_24" label="24" />
         <menu-item id="clock_size_28" label="28" />
-        <menu-item id="clock_size_30" label="30" />
         <menu-item id="clock_size_36" label="36" />
-        <menu-item id="clock_size_44" label="44" />
         <menu-item id="clock_size_52" label="52" />
-        <menu-item id="clock_size_60" label="60" />
         <menu-item id="clock_size_68" label="68" />
-        <menu-item id="clock_size_76" label="76" />
         <menu-item id="clock_size_84" label="84" />
+
     </menu2>
 
     <menu2 id="ShabbatTimesSizeMenu" title="Shabbat Times Size">
-        <menu-item id="clock_size_18" label="18" />
-        <menu-item id="clock_size_22" label="22" />
         <menu-item id="clock_size_24" label="24" />
         <menu-item id="clock_size_28" label="28" />
-        <menu-item id="clock_size_30" label="30" />
         <menu-item id="clock_size_36" label="36" />
-        <menu-item id="clock_size_44" label="44" />
         <menu-item id="clock_size_52" label="52" />
-        <menu-item id="clock_size_60" label="60" />
         <menu-item id="clock_size_68" label="68" />
-        <menu-item id="clock_size_76" label="76" />
         <menu-item id="clock_size_84" label="84" />
+
     </menu2>
 
     <menu2 id="LanguageMenu" title="Language">

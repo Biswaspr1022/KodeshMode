@@ -4,7 +4,7 @@ import math
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-SIZES = [18, 22, 24, 28, 30, 36, 44, 52, 60, 68, 76, 84]
+SIZES = [24, 28, 36, 52, 68, 84]
 FAMILIES = [
     ("Varela", "varela", "varela"),
     ("Stam", "stam", "stam"),

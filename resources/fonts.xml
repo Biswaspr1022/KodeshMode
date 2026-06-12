@@ -1,38 +1,20 @@
 <resources>
-    <font id="Varela18" filename="fonts/varela_18.fnt" antialias="true" />
-    <font id="Varela22" filename="fonts/varela_22.fnt" antialias="true" />
     <font id="Varela24" filename="fonts/varela_24.fnt" antialias="true" />
     <font id="Varela28" filename="fonts/varela_28.fnt" antialias="true" />
-    <font id="Varela30" filename="fonts/varela_30.fnt" antialias="true" />
     <font id="Varela36" filename="fonts/varela_36.fnt" antialias="true" />
-    <font id="Varela44" filename="fonts/varela_44.fnt" antialias="true" />
     <font id="Varela52" filename="fonts/varela_52.fnt" antialias="true" />
-    <font id="Varela60" filename="fonts/varela_60.fnt" antialias="true" />
     <font id="Varela68" filename="fonts/varela_68.fnt" antialias="true" />
-    <font id="Varela76" filename="fonts/varela_76.fnt" antialias="true" />
     <font id="Varela84" filename="fonts/varela_84.fnt" antialias="true" />
-    <font id="Stam18" filename="fonts/stam_18.fnt" antialias="true" />
-    <font id="Stam22" filename="fonts/stam_22.fnt" antialias="true" />
     <font id="Stam24" filename="fonts/stam_24.fnt" antialias="true" />
     <font id="Stam28" filename="fonts/stam_28.fnt" antialias="true" />
-    <font id="Stam30" filename="fonts/stam_30.fnt" antialias="true" />
     <font id="Stam36" filename="fonts/stam_36.fnt" antialias="true" />
-    <font id="Stam44" filename="fonts/stam_44.fnt" antialias="true" />
     <font id="Stam52" filename="fonts/stam_52.fnt" antialias="true" />
-    <font id="Stam60" filename="fonts/stam_60.fnt" antialias="true" />
     <font id="Stam68" filename="fonts/stam_68.fnt" antialias="true" />
-    <font id="Stam76" filename="fonts/stam_76.fnt" antialias="true" />
     <font id="Stam84" filename="fonts/stam_84.fnt" antialias="true" />
-    <font id="Simple18" filename="fonts/simple_18.fnt" antialias="true" />
-    <font id="Simple22" filename="fonts/simple_22.fnt" antialias="true" />
     <font id="Simple24" filename="fonts/simple_24.fnt" antialias="true" />
     <font id="Simple28" filename="fonts/simple_28.fnt" antialias="true" />
-    <font id="Simple30" filename="fonts/simple_30.fnt" antialias="true" />
     <font id="Simple36" filename="fonts/simple_36.fnt" antialias="true" />
-    <font id="Simple44" filename="fonts/simple_44.fnt" antialias="true" />
     <font id="Simple52" filename="fonts/simple_52.fnt" antialias="true" />
-    <font id="Simple60" filename="fonts/simple_60.fnt" antialias="true" />
     <font id="Simple68" filename="fonts/simple_68.fnt" antialias="true" />
-    <font id="Simple76" filename="fonts/simple_76.fnt" antialias="true" />
     <font id="Simple84" filename="fonts/simple_84.fnt" antialias="true" />
 </resources>

@@ -72,23 +72,14 @@ module AppFonts {
     }
 
     function normalizeClockSize(value as String) as String {
-        if (value.equals("clock_size_18") || value.equals("18")) { return "clock_size_18"; }
-        if (value.equals("clock_size_22") || value.equals("22")) { return "clock_size_22"; }
-        if (value.equals("clock_size_24") || value.equals("24")) { return "clock_size_24"; }
-        if (value.equals("clock_size_28") || value.equals("28")) { return "clock_size_28"; }
-        if (value.equals("clock_size_30") || value.equals("30")) { return "clock_size_30"; }
-        if (value.equals("clock_size_36") || value.equals("36")) { return "clock_size_36"; }
-        if (value.equals("clock_size_44") || value.equals("44")) { return "clock_size_44"; }
-        if (value.equals("clock_size_52") || value.equals("52")) { return "clock_size_52"; }
-        if (value.equals("clock_size_60") || value.equals("60")) { return "clock_size_60"; }
-        if (value.equals("clock_size_68") || value.equals("68")) { return "clock_size_68"; }
-        if (value.equals("clock_size_76") || value.equals("76")) { return "clock_size_76"; }
-        if (value.equals("clock_size_84") || value.equals("84")) { return "clock_size_84"; }
-
-        if (value.equals("clock_size_small")) { return "clock_size_22"; }
-        if (value.equals("clock_size_medium")) { return "clock_size_36"; }
-        if (value.equals("clock_size_large")) { return "clock_size_52"; }
-        if (value.equals("clock_size_huge")) { return "clock_size_60"; }
+        // Keep only six bitmap font sizes to reduce the compiled PRG size.
+        // Legacy values are mapped to the nearest supported size.
+        if (value.equals("clock_size_24") || value.equals("24") || value.equals("22") || value.equals("18") || value.equals("clock_size_22") || value.equals("clock_size_18") || value.equals("clock_size_small")) { return "clock_size_24"; }
+        if (value.equals("clock_size_28") || value.equals("28") || value.equals("30") || value.equals("clock_size_30")) { return "clock_size_28"; }
+        if (value.equals("clock_size_36") || value.equals("36") || value.equals("clock_size_medium")) { return "clock_size_36"; }
+        if (value.equals("clock_size_52") || value.equals("52") || value.equals("44") || value.equals("clock_size_44") || value.equals("clock_size_large")) { return "clock_size_52"; }
+        if (value.equals("clock_size_68") || value.equals("68") || value.equals("60") || value.equals("clock_size_60") || value.equals("clock_size_huge")) { return "clock_size_68"; }
+        if (value.equals("clock_size_84") || value.equals("84") || value.equals("76") || value.equals("clock_size_76")) { return "clock_size_84"; }
 
         return "clock_size_36";
     }
@@ -165,24 +156,18 @@ module AppFonts {
     function getSizeLabelForMode(value as String) as String {
         var normalized = normalizeClockSize(value);
 
-        if (normalized.equals("clock_size_18")) { return "18"; }
-        if (normalized.equals("clock_size_22")) { return "22"; }
         if (normalized.equals("clock_size_24")) { return "24"; }
         if (normalized.equals("clock_size_28")) { return "28"; }
-        if (normalized.equals("clock_size_30")) { return "30"; }
         if (normalized.equals("clock_size_36")) { return "36"; }
-        if (normalized.equals("clock_size_44")) { return "44"; }
         if (normalized.equals("clock_size_52")) { return "52"; }
-        if (normalized.equals("clock_size_60")) { return "60"; }
         if (normalized.equals("clock_size_68")) { return "68"; }
-        if (normalized.equals("clock_size_76")) { return "76"; }
         if (normalized.equals("clock_size_84")) { return "84"; }
 
         return "36";
     }
 
     function getParashaSizeMode() as String {
-        return getSizeModeForKey("parashaSize", "clock_size_22");
+        return getSizeModeForKey("parashaSize", "clock_size_24");
     }
 
     function getParashaSizeLabel() as String {
@@ -190,7 +175,7 @@ module AppFonts {
     }
 
     function getShabbatTimesSizeMode() as String {
-        return getSizeModeForKey("shabbatTimesSize", "clock_size_18");
+        return getSizeModeForKey("shabbatTimesSize", "clock_size_24");
     }
 
     function getShabbatTimesSizeLabel() as String {
@@ -198,7 +183,7 @@ module AppFonts {
     }
 
     function getHebrewDateSizeMode() as String {
-        return getSizeModeForKey("hebrewDateSize", "clock_size_22");
+        return getSizeModeForKey("hebrewDateSize", "clock_size_24");
     }
 
     function getHebrewDateSizeLabel() as String {
@@ -209,76 +194,49 @@ module AppFonts {
         var size = normalizeClockSize(sizeMode);
 
         if (family.equals("stam")) {
-            if (size.equals("clock_size_18")) { return WatchUi.loadResource(Rez.Fonts.Stam18); }
-            if (size.equals("clock_size_22")) { return WatchUi.loadResource(Rez.Fonts.Stam22); }
             if (size.equals("clock_size_24")) { return WatchUi.loadResource(Rez.Fonts.Stam24); }
             if (size.equals("clock_size_28")) { return WatchUi.loadResource(Rez.Fonts.Stam28); }
-            if (size.equals("clock_size_30")) { return WatchUi.loadResource(Rez.Fonts.Stam30); }
             if (size.equals("clock_size_36")) { return WatchUi.loadResource(Rez.Fonts.Stam36); }
-            if (size.equals("clock_size_44")) { return WatchUi.loadResource(Rez.Fonts.Stam44); }
             if (size.equals("clock_size_52")) { return WatchUi.loadResource(Rez.Fonts.Stam52); }
-            if (size.equals("clock_size_60")) { return WatchUi.loadResource(Rez.Fonts.Stam60); }
             if (size.equals("clock_size_68")) { return WatchUi.loadResource(Rez.Fonts.Stam68); }
-            if (size.equals("clock_size_76")) { return WatchUi.loadResource(Rez.Fonts.Stam76); }
             return WatchUi.loadResource(Rez.Fonts.Stam84);
         }
 
         if (family.equals("simple")) {
-            if (size.equals("clock_size_18")) { return WatchUi.loadResource(Rez.Fonts.Simple18); }
-            if (size.equals("clock_size_22")) { return WatchUi.loadResource(Rez.Fonts.Simple22); }
             if (size.equals("clock_size_24")) { return WatchUi.loadResource(Rez.Fonts.Simple24); }
             if (size.equals("clock_size_28")) { return WatchUi.loadResource(Rez.Fonts.Simple28); }
-            if (size.equals("clock_size_30")) { return WatchUi.loadResource(Rez.Fonts.Simple30); }
             if (size.equals("clock_size_36")) { return WatchUi.loadResource(Rez.Fonts.Simple36); }
-            if (size.equals("clock_size_44")) { return WatchUi.loadResource(Rez.Fonts.Simple44); }
             if (size.equals("clock_size_52")) { return WatchUi.loadResource(Rez.Fonts.Simple52); }
-            if (size.equals("clock_size_60")) { return WatchUi.loadResource(Rez.Fonts.Simple60); }
             if (size.equals("clock_size_68")) { return WatchUi.loadResource(Rez.Fonts.Simple68); }
-            if (size.equals("clock_size_76")) { return WatchUi.loadResource(Rez.Fonts.Simple76); }
             return WatchUi.loadResource(Rez.Fonts.Simple84);
         }
 
-        if (size.equals("clock_size_18")) { return WatchUi.loadResource(Rez.Fonts.Varela18); }
-        if (size.equals("clock_size_22")) { return WatchUi.loadResource(Rez.Fonts.Varela22); }
         if (size.equals("clock_size_24")) { return WatchUi.loadResource(Rez.Fonts.Varela24); }
         if (size.equals("clock_size_28")) { return WatchUi.loadResource(Rez.Fonts.Varela28); }
-        if (size.equals("clock_size_30")) { return WatchUi.loadResource(Rez.Fonts.Varela30); }
         if (size.equals("clock_size_36")) { return WatchUi.loadResource(Rez.Fonts.Varela36); }
-        if (size.equals("clock_size_44")) { return WatchUi.loadResource(Rez.Fonts.Varela44); }
         if (size.equals("clock_size_52")) { return WatchUi.loadResource(Rez.Fonts.Varela52); }
-        if (size.equals("clock_size_60")) { return WatchUi.loadResource(Rez.Fonts.Varela60); }
         if (size.equals("clock_size_68")) { return WatchUi.loadResource(Rez.Fonts.Varela68); }
-        if (size.equals("clock_size_76")) { return WatchUi.loadResource(Rez.Fonts.Varela76); }
         return WatchUi.loadResource(Rez.Fonts.Varela84);
     }
 
     function getSystemClockFontForSize(sizeMode as String) {
         var size = normalizeClockSize(sizeMode);
 
-        // Garmin built-in system fonts have only a few real sizes. On Fenix/MIP,
-        // 52/60/68/76/84 all collapse to the same built-in FONT_NUMBER_HOT, so
-        // changing the size setting appears to do nothing. For these large sizes,
-        // use the generated Varela font resources so every selected size is a
-        // real different bitmap font. Small/medium sizes keep Garmin system fonts.
+        // Garmin built-in system fonts have only a few real sizes. For large
+        // clock sizes, switch to generated Varela resources so the selected
+        // size is visibly different.
         if (size.equals("clock_size_36") ||
-            size.equals("clock_size_44") ||
             size.equals("clock_size_52") ||
-            size.equals("clock_size_60") ||
             size.equals("clock_size_68") ||
-            size.equals("clock_size_76") ||
             size.equals("clock_size_84")) {
             return getRoleFont("clock", "varela", size);
         }
 
-        if (size.equals("clock_size_18")) {
-            return Graphics.FONT_XTINY;
-        }
-
-        if (size.equals("clock_size_22") || size.equals("clock_size_24")) {
+        if (size.equals("clock_size_24")) {
             return Graphics.FONT_SMALL;
         }
 
-        if (size.equals("clock_size_28") || size.equals("clock_size_30")) {
+        if (size.equals("clock_size_28")) {
             return Graphics.FONT_MEDIUM;
         }
 

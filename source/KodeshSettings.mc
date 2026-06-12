@@ -272,7 +272,7 @@ module KodeshSettings {
         if (key.equals("fontColor")) { return "color_white"; }
         if (key.equals("timeFormat")) { return "format_hm"; }
         if (key.equals("language")) { return "lang_he"; }
-        if (key.equals("hebrewDateSize")) { return "clock_size_22"; }
+        if (key.equals("hebrewDateSize")) { return "clock_size_24"; }
         if (key.equals("parashaSize")) { return "clock_size_24"; }
         if (key.equals("shabbatTimesSize")) { return "clock_size_24"; }
         if (key.equals("location")) { return "loc_jerusalem"; }
@@ -315,18 +315,12 @@ module KodeshSettings {
         }
 
         if (key.equals("clockSize") || key.equals("hebrewDateSize") || key.equals("parashaSize") || key.equals("shabbatTimesSize")) {
-            if (value.equals("clock_size_18") || value.equals("18") || value.equals("0")) { return 18; }
-            if (value.equals("clock_size_22") || value.equals("clock_size_small") || value.equals("22") || value.equals("1")) { return 22; }
-            if (value.equals("clock_size_24") || value.equals("24") || value.equals("2")) { return 24; }
-            if (value.equals("clock_size_28") || value.equals("28") || value.equals("3")) { return 28; }
-            if (value.equals("clock_size_30") || value.equals("30") || value.equals("4")) { return 30; }
-            if (value.equals("clock_size_36") || value.equals("clock_size_medium") || value.equals("36") || value.equals("5")) { return 36; }
-            if (value.equals("clock_size_44") || value.equals("44") || value.equals("6")) { return 44; }
-            if (value.equals("clock_size_52") || value.equals("clock_size_large") || value.equals("52") || value.equals("7")) { return 52; }
-            if (value.equals("clock_size_60") || value.equals("clock_size_huge") || value.equals("60") || value.equals("8")) { return 60; }
-            if (value.equals("clock_size_68") || value.equals("68") || value.equals("9")) { return 68; }
-            if (value.equals("clock_size_76") || value.equals("76") || value.equals("10")) { return 76; }
-            if (value.equals("clock_size_84") || value.equals("84") || value.equals("11")) { return 84; }
+            if (value.equals("clock_size_24") || value.equals("clock_size_small") || value.equals("24") || value.equals("22") || value.equals("18") || value.equals("clock_size_22") || value.equals("clock_size_18")) { return 24; }
+            if (value.equals("clock_size_28") || value.equals("28") || value.equals("30") || value.equals("clock_size_30")) { return 28; }
+            if (value.equals("clock_size_36") || value.equals("clock_size_medium") || value.equals("36")) { return 36; }
+            if (value.equals("clock_size_52") || value.equals("clock_size_large") || value.equals("52") || value.equals("44") || value.equals("clock_size_44")) { return 52; }
+            if (value.equals("clock_size_68") || value.equals("clock_size_huge") || value.equals("68") || value.equals("60") || value.equals("clock_size_60")) { return 68; }
+            if (value.equals("clock_size_84") || value.equals("84") || value.equals("76") || value.equals("clock_size_76")) { return 84; }
             return sizeDefaultNumberForKey(key);
         }
 
@@ -389,7 +383,7 @@ module KodeshSettings {
     }
 
     function sizeDefaultNumberForKey(key as String) as Number {
-        if (key.equals("hebrewDateSize")) { return 22; }
+        if (key.equals("hebrewDateSize")) { return 24; }
         if (key.equals("parashaSize")) { return 24; }
         if (key.equals("shabbatTimesSize")) { return 24; }
         return 36;
@@ -409,18 +403,12 @@ module KodeshSettings {
         }
 
         if (key.equals("clockSize") || key.equals("hebrewDateSize") || key.equals("parashaSize") || key.equals("shabbatTimesSize")) {
-            if (value == 18 || value == 0) { return "clock_size_18"; }
-            if (value == 22 || value == 1) { return "clock_size_22"; }
-            if (value == 24 || value == 2) { return "clock_size_24"; }
-            if (value == 28 || value == 3) { return "clock_size_28"; }
-            if (value == 30 || value == 4) { return "clock_size_30"; }
-            if (value == 36 || value == 5) { return "clock_size_36"; }
-            if (value == 44 || value == 6) { return "clock_size_44"; }
-            if (value == 52 || value == 7) { return "clock_size_52"; }
-            if (value == 60 || value == 8) { return "clock_size_60"; }
-            if (value == 68 || value == 9) { return "clock_size_68"; }
-            if (value == 76 || value == 10) { return "clock_size_76"; }
-            if (value == 84 || value == 11) { return "clock_size_84"; }
+            if (value == 24 || value == 22 || value == 18) { return "clock_size_24"; }
+            if (value == 28 || value == 30) { return "clock_size_28"; }
+            if (value == 36) { return "clock_size_36"; }
+            if (value == 52 || value == 44) { return "clock_size_52"; }
+            if (value == 68 || value == 60) { return "clock_size_68"; }
+            if (value == 84 || value == 76) { return "clock_size_84"; }
             return stringForNumberChoice(key, sizeDefaultNumberForKey(key));
         }
 
@@ -592,7 +580,7 @@ module KodeshSettings {
         setValue("language", "lang_he");
         setValue("showParasha", true);
         setValue("showHebrewDate", true);
-        setValue("hebrewDateSize", "clock_size_22");
+        setValue("hebrewDateSize", "clock_size_24");
         setValue("showOmer", true);
         setValue("showBattery", false);
         setValue("parashaSize", "clock_size_24");

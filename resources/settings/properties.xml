@@ -10,7 +10,7 @@
     <!-- Optional content. -->
     <property id="showParasha" type="boolean">true</property>
     <property id="showHebrewDate" type="boolean">true</property>
-    <property id="hebrewDateSize" type="number">22</property>
+    <property id="hebrewDateSize" type="number">24</property>
     <property id="showOmer" type="boolean">true</property>
     <property id="showBattery" type="boolean">false</property>
     <property id="parashaSize" type="number">24</property>

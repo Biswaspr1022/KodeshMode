@@ -235,10 +235,9 @@ class KodeshModeView extends WatchUi.View {
         // and let the existing centered drawText/circular layout decide whether it fits.
         // Only very small legacy screens get a defensive cap to avoid unreadable clipping.
         if (width <= 176) {
-            if (size.equals("clock_size_84") || size.equals("clock_size_76") ||
-                size.equals("clock_size_68") || size.equals("clock_size_60") ||
+            if (size.equals("clock_size_84") || size.equals("clock_size_68") ||
                 size.equals("clock_size_52")) {
-                return "clock_size_44";
+                return "clock_size_36";
             }
         }
 
@@ -326,7 +325,6 @@ class KodeshModeView extends WatchUi.View {
         // Fenix-style: use almost the full safe circular area.
         var factor = 0.455f;
         if (size.equals("clock_size_18")) { factor = 0.405f; }
-        else if (size.equals("clock_size_22")) { factor = 0.425f; }
         else if (size.equals("clock_size_24")) { factor = 0.438f; }
         else if (size.equals("clock_size_28")) { factor = 0.452f; }
         else if (size.equals("clock_size_30")) { factor = 0.462f; }
@@ -385,25 +383,25 @@ class KodeshModeView extends WatchUi.View {
 
     function getAnalogNumberFont(radius as Number, isAod as Boolean) {
         var fontMode = AppFonts.getClockFontMode();
-        var sizeMode = "clock_size_18";
+        var sizeMode = "clock_size_24";
 
         if (isAod) {
             if (radius >= 150) {
-                sizeMode = "clock_size_24";
+                sizeMode = "clock_size_28";
             } else if (radius >= 120) {
-                sizeMode = "clock_size_22";
+                sizeMode = "clock_size_24";
             } else {
-                sizeMode = "clock_size_18";
+                sizeMode = "clock_size_24";
             }
         } else {
             if (radius >= 158) {
                 sizeMode = "clock_size_28";
             } else if (radius >= 135) {
-                sizeMode = "clock_size_24";
+                sizeMode = "clock_size_28";
             } else if (radius >= 112) {
-                sizeMode = "clock_size_22";
+                sizeMode = "clock_size_24";
             } else {
-                sizeMode = "clock_size_18";
+                sizeMode = "clock_size_24";
             }
         }
 
