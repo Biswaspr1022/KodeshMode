@@ -55,7 +55,6 @@ class GuideDelegate extends WatchUi.BehaviorDelegate {
 
     function onKeyPressed(keyEvent as WatchUi.KeyEvent) as Boolean {
         var key = keyEvent.getKey();
-        // Consume the press events so they don't leak to onKey or the underlying view
         if (key == WatchUi.KEY_DOWN || key == WatchUi.KEY_ENTER || key == WatchUi.KEY_UP || key == WatchUi.KEY_ESC) {
             return true;
         }
@@ -234,7 +233,6 @@ class GuideView extends WatchUi.View {
         }
     }
 
-    // -- Page 2: Screen protection -------------------------------------------
     function drawPage2(dc as Graphics.Dc, w as Number, h as Number, isHe as Boolean) as Void {
         var topY = (h.toFloat() * 0.22f).toNumber();
         var lineH = (h.toFloat() * 0.11f).toNumber();
@@ -249,22 +247,37 @@ class GuideView extends WatchUi.View {
         drawDivider(dc, w, topY);
         topY += 14;
 
+        var isAmoled = deviceRequiresBurnInProtection(System.getDeviceSettings());
+        var isProtectorOn = KodeshSettings.getBool("screenProtector", true);
+
         if (isHe) {
-            drawHebrewLine(dc, w, topY, "AMOLED:", Graphics.COLOR_LT_GRAY);
-            topY += lineH - 4;
-            drawHebrewLine(dc, w, topY, "הגנת צריבה פעילה", Graphics.COLOR_WHITE);
-            topY += lineH - 2;
-            drawHebrewLine(dc, w, topY, "MIP / סולארי:", Graphics.COLOR_LT_GRAY);
-            topY += lineH - 4;
-            drawHebrewLine(dc, w, topY, "תצוגה קבועה", Graphics.COLOR_WHITE);
+            if (isAmoled) {
+                drawHebrewLine(dc, w, topY, "AMOLED:", Graphics.COLOR_LT_GRAY);
+                topY += lineH - 4;
+                if (isProtectorOn) {
+                    drawHebrewLine(dc, w, topY, "הגנת צריבה פעילה", Graphics.COLOR_WHITE);
+                } else {
+                    drawHebrewLine(dc, w, topY, "הגנת צריבה כבויה", Graphics.COLOR_WHITE);
+                }
+            } else {
+                drawHebrewLine(dc, w, topY, "MIP / סולארי:", Graphics.COLOR_LT_GRAY);
+                topY += lineH - 4;
+                drawHebrewLine(dc, w, topY, "תצוגה קבועה", Graphics.COLOR_WHITE);
+            }
         } else {
-            drawLine(dc, w, topY, "AMOLED:", Graphics.COLOR_LT_GRAY);
-            topY += lineH - 4;
-            drawLine(dc, w, topY, "Burn-in protection on", Graphics.COLOR_WHITE);
-            topY += lineH - 2;
-            drawLine(dc, w, topY, "MIP / Solar:", Graphics.COLOR_LT_GRAY);
-            topY += lineH - 4;
-            drawLine(dc, w, topY, "Static display", Graphics.COLOR_WHITE);
+            if (isAmoled) {
+                drawLine(dc, w, topY, "AMOLED:", Graphics.COLOR_LT_GRAY);
+                topY += lineH - 4;
+                if (isProtectorOn) {
+                    drawLine(dc, w, topY, "Burn-in protection on", Graphics.COLOR_WHITE);
+                } else {
+                    drawLine(dc, w, topY, "Burn-in protection off", Graphics.COLOR_WHITE);
+                }
+            } else {
+                drawLine(dc, w, topY, "MIP / Solar:", Graphics.COLOR_LT_GRAY);
+                topY += lineH - 4;
+                drawLine(dc, w, topY, "Static display", Graphics.COLOR_WHITE);
+            }
         }
     }
 }

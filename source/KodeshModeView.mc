@@ -9,6 +9,28 @@ import Toybox.Time;
 import Toybox.Time.Gregorian;
 import Toybox.Attention;
 
+const FORCE_AOD_TEST = false;
+
+function deviceRequiresBurnInProtection(settings) as Boolean {
+    try {
+        if (FORCE_AOD_TEST) {
+            return true;
+        }
+
+        if (settings != null && (settings has :requiresBurnInProtection)) {
+            return settings.requiresBurnInProtection == true;
+        }
+    } catch (ex) {
+    }
+
+    return false;
+}
+
+function shouldUseAmoledLayout(settings) as Boolean {
+    return deviceRequiresBurnInProtection(settings);
+}
+
+
 class KodeshModeView extends WatchUi.View {
     private var _timer;
     private var _isLowPower as Boolean = false;
@@ -21,7 +43,6 @@ class KodeshModeView extends WatchUi.View {
     private const PRE_SHABBAT_ALERT_DISPLAY_MS = 10000;
     private const KEY_PRE_SHABBAT_ALERT_MESSAGE = "preShabbatAlertMessage";
     private const KEY_PRE_SHABBAT_ALERT_UNTIL = "preShabbatAlertUntil";
-    private const FORCE_AOD_TEST = false; // Production must be false. Enable only briefly in simulator testing.
 
     function initialize() {
         View.initialize();
@@ -282,12 +303,6 @@ class KodeshModeView extends WatchUi.View {
         return mode != null && (mode as String).equals("clock_analog");
     }
 
-    function shouldUseAmoledLayout(settings) as Boolean {
-        // Device split for production:
-        // AMOLED devices expose requiresBurnInProtection=true and get full AOD / burn-in protection.
-        // MIP / Solar devices do not need burn-in protection and keep the clean digital layout.
-        return deviceRequiresBurnInProtection(settings);
-    }
 
     function shouldUseAnalogClockForDevice(settings) as Boolean {
         if (!shouldUseAmoledLayout(settings)) {
@@ -1346,6 +1361,11 @@ class KodeshModeView extends WatchUi.View {
         return deviceRequiresBurnInProtection(System.getDeviceSettings());
     }
 
+    (:test)
+    function getShabbatTimesForTest(now as Time.Moment) as ZmanimEngine.ShabbatTimes? {
+        return _zmanimEngine.getShabbatTimes(now);
+    }
+
     function drawMipCenteredText(dc as Graphics.Dc, x as Number, y as Number, font, text as String, color as Number) as Void {
         if (text == null || text.equals("")) {
             return;
@@ -1466,20 +1486,6 @@ class KodeshModeView extends WatchUi.View {
         }
     }
 
-    function deviceRequiresBurnInProtection(settings) as Boolean {
-        try {
-            if (FORCE_AOD_TEST) {
-                return true;
-            }
-
-            if (settings != null && (settings has :requiresBurnInProtection)) {
-                return settings.requiresBurnInProtection == true;
-            }
-        } catch (ex) {
-        }
-
-        return false;
-    }
 
     function isScreenProtectorEnabled() as Boolean {
         return getToggleValue("screenProtector", true);

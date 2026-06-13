@@ -58,9 +58,9 @@ module ShabbatMode {
 
     function shabbatModeOffText() as String {
         if (isHebrew()) {
-            return loadTextResource(Rez.Strings.TextShabbatModeOff);
+            return loadTextResource(Rez.Strings.TextShabbatModeOff) + "\nכדי להפעיל לחץ GPS";
         }
-        return "Shabbat Mode off";
+        return "Shabbat Mode off\nPress GPS to activate";
     }
 
     function touchOffRequiredText() as String {
