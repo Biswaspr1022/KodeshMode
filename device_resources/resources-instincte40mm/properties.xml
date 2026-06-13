@@ -1,11 +1,17 @@
-﻿<properties>
+<properties>
     <property id="clockStyle" type="number">0</property>
     <property id="clockSize" type="number">24</property>
     <property id="hebrewDateSize" type="number">24</property>
     <property id="parashaSize" type="number">24</property>
     <property id="shabbatTimesSize" type="number">24</property>
-    <property id="omerY" type="number">6</property>
-    <property id="parashaY" type="number">4</property>
-    <property id="shabbatTimesY" type="number">-4</property>
-    <property id="batteryY" type="number">-6</property>
+    <property id="omerX" type="number">-10</property>
+    <property id="omerY" type="number">-2</property>
+    <property id="parashaX" type="number">-10</property>
+    <property id="parashaY" type="number">13</property>
+    <property id="hebrewDateX" type="number">-5</property>
+    <property id="hebrewDateY" type="number">26</property>
+    <property id="statusY" type="number">50</property>
+    <property id="clockY" type="number">59</property>
+    <property id="shabbatTimesY" type="number">47</property>
+    <property id="batteryY" type="number">37</property>
 </properties>
