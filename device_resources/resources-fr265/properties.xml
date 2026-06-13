@@ -1,0 +1,7 @@
+﻿<properties>
+    <property id="clockStyle" type="number">1</property>
+    <property id="clockSize" type="number">52</property>
+    <property id="hebrewDateSize" type="number">28</property>
+    <property id="parashaSize" type="number">24</property>
+    <property id="shabbatTimesSize" type="number">24</property>
+</properties>

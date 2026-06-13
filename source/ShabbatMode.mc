@@ -58,9 +58,9 @@ module ShabbatMode {
 
     function shabbatModeOffText() as String {
         if (isHebrew()) {
-            return loadTextResource(Rez.Strings.TextShabbatModeOff);
+            return loadTextResource(Rez.Strings.TextShabbatModeOff) + "\nכדי להפעיל לחץ GPS";
         }
-        return "Shabbat Mode off";
+        return "Shabbat Mode off\nPress GPS to activate";
     }
 
     function touchOffRequiredText() as String {
@@ -171,6 +171,12 @@ module ShabbatMode {
         }
 
         if (!isEnabled()) {
+            if (Storage.getValue("hasSeenGuide") == null) {
+                if (isHebrew()) {
+                    return "לחץ START להפעלה";
+                }
+                return "Press START to enable";
+            }
             return shabbatModeOffText();
         }
 
@@ -338,6 +344,7 @@ module ShabbatMode {
         }
 
         KodeshSettings.setValue(KEY_ENABLED, true);
+        Storage.setValue("hasSeenGuide", true);
         clearStatus();
         return true;
     }

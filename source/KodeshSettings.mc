@@ -138,7 +138,7 @@ module KodeshSettings {
             "clockStyle", "clockFont", "clockSize", "fontColor", "timeFormat",
             "language", "showParasha", "showHebrewDate", "hebrewDateSize",
             "showOmer", "showBattery", "parashaSize", "showShabbatTimes",
-            "shabbatTimesSize", "shabbatProgress", "location", "endMethod",
+            "shabbatTimesSize", "shabbatProgress", "screenProtector", "location", "endMethod",
             "candleOffset", "preShabbatAlert", "parashaSchedule",
             "isTouch", "touchDisabledConfirmed", "shabbatSpecialMode",
             "clockX", "clockY", "progressX", "progressY", "omerX", "omerY",
@@ -495,29 +495,23 @@ module KodeshSettings {
 
 
     function debugPropertyValue(key as String) as String {
+        var str = "ex";
         try {
-            var propertyValue = Properties.getValue(key);
-            if (propertyValue != null) {
-                return propertyValue.toString();
-            }
-            return "null";
+            var val = Properties.getValue(key);
+            str = (val == null) ? "null" : val.toString();
         } catch (propertyEx) {
         }
-
-        return "ex";
+        return str;
     }
 
     function debugStorageValue(key as String) as String {
+        var str = "ex";
         try {
-            var storageValue = Storage.getValue(key);
-            if (storageValue != null) {
-                return storageValue.toString();
-            }
-            return "null";
+            var val = Storage.getValue(key);
+            str = (val == null) ? "null" : val.toString();
         } catch (storageEx) {
         }
-
-        return "ex";
+        return str;
     }
 
     function debugLocalOverrideValue(key as String) as String {
@@ -587,6 +581,7 @@ module KodeshSettings {
         setValue("showShabbatTimes", false);
         setValue("shabbatTimesSize", "clock_size_24");
         setValue("shabbatProgress", true);
+        setValue("screenProtector", true);
 
         resetLayoutOffsets();
 
@@ -610,6 +605,7 @@ module KodeshSettings {
         safeDelete("shabbatModeStatusUntil");
         safeDelete("shabbatFrozenGpsLat");
         safeDelete("shabbatFrozenGpsLon");
+        safeDelete("hasSeenGuide");
     }
 
     function resetLayoutOffsets() as Void {

@@ -106,6 +106,9 @@
     <setting propertyKey="@Properties.shabbatProgress" title="@Strings.SettingShabbatProgressTitle">
         <settingConfig type="boolean" />
     </setting>
+    <setting propertyKey="@Properties.screenProtector" title="@Strings.SettingScreenProtectorTitle">
+        <settingConfig type="boolean" />
+    </setting>
 
     <setting propertyKey="@Properties.location" title="@Strings.SettingLocationTitle">
         <settingConfig type="list">

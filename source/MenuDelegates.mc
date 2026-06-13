@@ -86,6 +86,13 @@ class DisplaySettingsDelegate extends WatchUi.Menu2InputDelegate {
                 bItem.setEnabled(KodeshSettings.getValue("showBattery") == true);
             }
 
+            var prIdx = menu.findItemById(:screen_protector);
+
+            if (prIdx != -1) {
+                var prItem = menu.getItem(prIdx) as WatchUi.ToggleMenuItem;
+                prItem.setEnabled(KodeshSettings.getValue("screenProtector") != false);
+            }
+
             WatchUi.pushView(menu, new AdditionalContentDelegate(), WatchUi.SLIDE_LEFT);
         } else if (id == :language_settings) {
             WatchUi.pushView(new Rez.Menus.LanguageMenu(), new SelectionDelegate("language"), WatchUi.SLIDE_LEFT);
@@ -240,6 +247,8 @@ class AdditionalContentDelegate extends WatchUi.Menu2InputDelegate {
                 KodeshSettings.setLocalValue("showOmer", isEnabled);
             } else if (id == :show_battery) {
                 KodeshSettings.setLocalValue("showBattery", isEnabled);
+            } else if (id == :screen_protector) {
+                KodeshSettings.setLocalValue("screenProtector", isEnabled);
             }
 
             WatchUi.requestUpdate();

@@ -165,6 +165,7 @@
     <string id="SettingShowShabbatTimesTitle">Show Shabbat Times</string>
     <string id="SettingShabbatTimesSizeTitle">Shabbat Times Size</string>
     <string id="SettingShabbatProgressTitle">Show Shabbat Progress</string>
+    <string id="SettingScreenProtectorTitle">Screen Protector (Anti Burn)</string>
     <string id="SettingLocationTitle">Location</string>
     <string id="SettingEndMethodTitle">Shabbat End Method</string>
     <string id="SettingCandleOffsetTitle">Candle Offset</string>

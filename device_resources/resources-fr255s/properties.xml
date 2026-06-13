@@ -1,0 +1,9 @@
+﻿<properties>
+    <property id="clockStyle" type="number">0</property>
+    <property id="clockSize" type="number">24</property>
+    <property id="hebrewDateSize" type="number">24</property>
+    <property id="parashaSize" type="number">24</property>
+    <property id="shabbatTimesSize" type="number">24</property>
+    <property id="omerY" type="number">6</property>
+    <property id="batteryY" type="number">-2</property>
+</properties>

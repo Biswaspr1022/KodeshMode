@@ -9,6 +9,28 @@ import Toybox.Time;
 import Toybox.Time.Gregorian;
 import Toybox.Attention;
 
+const FORCE_AOD_TEST = false;
+
+function deviceRequiresBurnInProtection(settings) as Boolean {
+    try {
+        if (FORCE_AOD_TEST) {
+            return true;
+        }
+
+        if (settings != null && (settings has :requiresBurnInProtection)) {
+            return settings.requiresBurnInProtection == true;
+        }
+    } catch (ex) {
+    }
+
+    return false;
+}
+
+function shouldUseAmoledLayout(settings) as Boolean {
+    return deviceRequiresBurnInProtection(settings);
+}
+
+
 class KodeshModeView extends WatchUi.View {
     private var _timer;
     private var _isLowPower as Boolean = false;
@@ -21,7 +43,6 @@ class KodeshModeView extends WatchUi.View {
     private const PRE_SHABBAT_ALERT_DISPLAY_MS = 10000;
     private const KEY_PRE_SHABBAT_ALERT_MESSAGE = "preShabbatAlertMessage";
     private const KEY_PRE_SHABBAT_ALERT_UNTIL = "preShabbatAlertUntil";
-    private const FORCE_AOD_TEST = false; // Production must be false. Enable only briefly in simulator testing.
 
     function initialize() {
         View.initialize();
@@ -62,16 +83,14 @@ class KodeshModeView extends WatchUi.View {
             _timer.stop();
         }
 
-        var now = Time.now();
-        var isShabbatNow = _zmanimEngine.isShabbat(now);
         var delay = MINUTE_MS;
         
-        var wantsSeconds = isTimeFormatWithSeconds();
-
         var settings = System.getDeviceSettings();
         var isAmoledLayout = shouldUseAmoledLayout(settings);
-        var isKodeshNow = isShabbatNow || isManualShabbatModeEnabled();
-        var isAod = FORCE_AOD_TEST || (isAmoledLayout && (_isLowPower || isKodeshNow));
+        var useAnalogClock = shouldUseAnalogClockForDevice(settings);
+        var isAod = FORCE_AOD_TEST || (isAmoledLayout && (_isLowPower || isManualShabbatModeEnabled()));
+
+        var wantsSeconds = useAnalogClock || isTimeFormatWithSeconds();
 
         if (_isLowPower) {
             if (getPreShabbatAlertMinutes() <= 0) {
@@ -284,12 +303,6 @@ class KodeshModeView extends WatchUi.View {
         return mode != null && (mode as String).equals("clock_analog");
     }
 
-    function shouldUseAmoledLayout(settings) as Boolean {
-        // Device split for production:
-        // AMOLED devices expose requiresBurnInProtection=true and get full AOD / burn-in protection.
-        // MIP / Solar devices do not need burn-in protection and keep the clean digital layout.
-        return deviceRequiresBurnInProtection(settings);
-    }
 
     function shouldUseAnalogClockForDevice(settings) as Boolean {
         if (!shouldUseAmoledLayout(settings)) {
@@ -339,7 +352,7 @@ class KodeshModeView extends WatchUi.View {
         var radius = (minDim.toFloat() * factor).toNumber();
         var maxRadius = (minDim.toFloat() * 0.492f).toNumber();
 
-        if (isAod) {
+        if (isAod && isScreenProtectorEnabled()) {
             // Reserve physical screen space for the larger pixel shift. AOD burn
             // safety is more important than using the absolute maximum diameter.
             maxRadius = (minDim / 2) - getBurnInShiftRange(width, height) - 6;
@@ -426,15 +439,32 @@ class KodeshModeView extends WatchUi.View {
         var majorColor = isAod ? 0x777777 : Graphics.COLOR_WHITE;
         var tick = 0;
 
-        // Cleaner analog face: draw only the 12 hour ticks.
-        // The previous 60 minute ticks created too many bright lines on the small watch screen,
-        // especially together with the large Hebrew inner content.
+        // Draw 60 ticks for normal mode, but only 12 ticks for AOD
+        // to keep the screen clean and reduce burn-in footprint.
         while (tick < 60) {
+            var isHour = (tick % 5) == 0;
+
+            if (!isHour && isAod) {
+                tick += 1;
+                continue;
+            }
+
             var units = tick.toFloat();
             var isCardinal = (tick % 15) == 0;
             var outer = radius - 6;
-            var inner = radius - (isCardinal ? 24 : 18);
-            var thickness = isAod ? (isCardinal ? 2 : 1) : (isCardinal ? 3 : 2);
+            
+            var inner;
+            var thickness;
+
+            if (!isHour) {
+                // Minute/second ticks
+                inner = radius - 12;
+                thickness = 1;
+            } else {
+                // Hour ticks
+                inner = radius - (isCardinal ? 24 : 18);
+                thickness = isAod ? (isCardinal ? 2 : 1) : (isCardinal ? 3 : 2);
+            }
 
             drawSafeLine(
                 dc,
@@ -446,7 +476,7 @@ class KodeshModeView extends WatchUi.View {
                 thickness
             );
 
-            tick += 5;
+            tick += 1;
         }
     }
 
@@ -1331,6 +1361,11 @@ class KodeshModeView extends WatchUi.View {
         return deviceRequiresBurnInProtection(System.getDeviceSettings());
     }
 
+    (:test)
+    function getShabbatTimesForTest(now as Time.Moment) as ZmanimEngine.ShabbatTimes? {
+        return _zmanimEngine.getShabbatTimes(now);
+    }
+
     function drawMipCenteredText(dc as Graphics.Dc, x as Number, y as Number, font, text as String, color as Number) as Void {
         if (text == null || text.equals("")) {
             return;
@@ -1451,19 +1486,9 @@ class KodeshModeView extends WatchUi.View {
         }
     }
 
-    function deviceRequiresBurnInProtection(settings) as Boolean {
-        try {
-            if (FORCE_AOD_TEST) {
-                return true;
-            }
 
-            if (settings != null && (settings has :requiresBurnInProtection)) {
-                return settings.requiresBurnInProtection == true;
-            }
-        } catch (ex) {
-        }
-
-        return false;
+    function isScreenProtectorEnabled() as Boolean {
+        return getToggleValue("screenProtector", true);
     }
 
     function onUpdate(dc as Graphics.Dc) as Void {
@@ -1475,15 +1500,18 @@ class KodeshModeView extends WatchUi.View {
         var now = Time.now();
         var width = dc.getWidth();
         var height = dc.getHeight();
-        var isShabbatNow = _zmanimEngine.isShabbat(now);
-        var isKodeshNow = isShabbatNow || isManualShabbatModeEnabled();
 
         var isAmoledLayout = shouldUseAmoledLayout(settings);
-        var isAod = FORCE_AOD_TEST || (isAmoledLayout && (_isLowPower || isKodeshNow));
-        // Burn-in protection is AMOLED-only. MIP/Solar devices keep shiftX/Y at 0
-        // and never enter the screen-protection layout.
-        var shiftX = isAod ? getBurnInOffsetX(clockTime, width, height) : 0;
-        var shiftY = isAod ? getBurnInOffsetY(clockTime, width, height) : 0;
+        // AOD / burn-in protection layout is driven by manual Shabbat Mode only.
+        // Calendar-based Shabbat (isShabbatNow) intentionally does NOT trigger
+        // the AOD layout so the app starts in the normal display even on Shabbat.
+        var isAod = FORCE_AOD_TEST || (isAmoledLayout && (_isLowPower || isManualShabbatModeEnabled()));
+        // Burn-in pixel shift is AMOLED-only and only when the screen protector
+        // setting is enabled. When disabled, the display stays static (no shift)
+        // but still uses the AMOLED layout.
+        var applyBurnInShift = isAod && isScreenProtectorEnabled();
+        var shiftX = applyBurnInShift ? getBurnInOffsetX(clockTime, width, height) : 0;
+        var shiftY = applyBurnInShift ? getBurnInOffsetY(clockTime, width, height) : 0;
         var useAnalogClock = shouldUseAnalogClockForDevice(settings);
         var centerX = (width / 2) + shiftX + getLayoutOffsetX("clock");
         var centerY = (height / 2) + shiftY + getLayoutOffsetY("clock");
@@ -1491,9 +1519,10 @@ class KodeshModeView extends WatchUi.View {
         // Analog mode owns the central circle, so keep it centered.
         // All optional Jewish/Shabbat data is drawn inside the analog face.
 
-        var showSeconds = isTimeFormatWithSeconds()
-            && !isAod
-            && !_isLowPower;
+        var showSeconds = !isAod && !_isLowPower;
+        if (!useAnalogClock) {
+            showSeconds = showSeconds && isTimeFormatWithSeconds();
+        }
 
         if (showSeconds != _lastShowSeconds) {
             _lastShowSeconds = showSeconds;

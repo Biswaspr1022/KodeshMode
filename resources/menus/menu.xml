@@ -65,6 +65,7 @@
         <menu-item id="shabbat_times_size" label="Shabbat Times Size" />
         <toggle-menu-item id="show_omer" label="Omer Count" />
         <toggle-menu-item id="show_battery" label="Battery" />
+        <toggle-menu-item id="screen_protector" label="Screen Protector" />
     </menu2>
 
     <menu2 id="HebrewDateSizeMenu" title="Hebrew Date Size">

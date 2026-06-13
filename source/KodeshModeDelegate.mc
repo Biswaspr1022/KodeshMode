@@ -6,7 +6,6 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
     private const EXIT_HOLD_MS = 5000;
     private const EVENT_DEBOUNCE_MS = 700;
     private var _enterDownAt as Number = 0;
-    private var _lastHandledAt as Number = 0;
 
     function initialize() {
         BehaviorDelegate.initialize();
@@ -46,19 +45,25 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function handleEnterPressed() as Void {
-        _enterDownAt = System.getTimer();
+        var now = System.getTimer();
+        if ((now - gLastInteractionTime) < EVENT_DEBOUNCE_MS) {
+            return;
+        }
+        _enterDownAt = now;
     }
 
     function handleEnterReleased() as Void {
         var now = System.getTimer();
         var heldMs = 0;
 
-        if (_enterDownAt > 0) {
-            heldMs = now - _enterDownAt;
+        if (_enterDownAt == 0 || (now - gLastInteractionTime) < EVENT_DEBOUNCE_MS) {
+            _enterDownAt = 0;
+            return;
         }
 
+        heldMs = now - _enterDownAt;
         _enterDownAt = 0;
-        _lastHandledAt = now;
+        gLastInteractionTime = now;
 
         if (ShabbatMode.isEnabled()) {
             if (heldMs >= EXIT_HOLD_MS) {
@@ -71,7 +76,13 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
             // Upper-right / START / ENTER button enters Shabbat Mode.
             // On touch watches such as Venu/vivoactive this is the top-right button.
             // On Instinct/fenix/Forerunner this keeps the existing START/GPS behavior.
-            ShabbatMode.enable();
+            var enabled = ShabbatMode.enable();
+            if (!enabled) {
+                // Pre-conditions not met — show the guide so the user
+                // knows what needs to be done before Shabbat Mode can start.
+                openGuide();
+                return;
+            }
         }
 
         WatchUi.requestUpdate();
@@ -80,11 +91,11 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
     function openMainMenuDebounced() as Boolean {
         var now = System.getTimer();
 
-        if ((now - _lastHandledAt) < EVENT_DEBOUNCE_MS) {
+        if ((now - gLastInteractionTime) < EVENT_DEBOUNCE_MS) {
             return true;
         }
 
-        _lastHandledAt = now;
+        gLastInteractionTime = now;
         return showPhoneSettingsOnly();
     }
 
@@ -108,6 +119,12 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
         }
 
         return false;
+    }
+
+    function openGuide() as Boolean {
+        var guide = new GuideView();
+        WatchUi.pushView(guide, new GuideDelegate(guide), WatchUi.SLIDE_LEFT);
+        return true;
     }
 
     // Long press is not used for settings. Settings are phone-only.
@@ -170,16 +187,20 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
     function onSelect() as Boolean {
         var now = System.getTimer();
 
-        if ((now - _lastHandledAt) < EVENT_DEBOUNCE_MS) {
+        if ((now - gLastInteractionTime) < EVENT_DEBOUNCE_MS) {
             return true;
         }
 
-        _lastHandledAt = now;
+        gLastInteractionTime = now;
 
         if (ShabbatMode.isEnabled()) {
             showExitInstruction();
         } else {
-            ShabbatMode.enable();
+            var enabled = ShabbatMode.enable();
+            if (!enabled) {
+                openGuide();
+                return true;
+            }
             WatchUi.requestUpdate();
         }
 
@@ -190,3 +211,5 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
         return showPhoneSettingsOnly();
     }
 }
+
+var gLastInteractionTime as Number = 0;

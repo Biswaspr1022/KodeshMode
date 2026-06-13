@@ -17,6 +17,7 @@
     <property id="showShabbatTimes" type="boolean">false</property>
     <property id="shabbatTimesSize" type="number">24</property>
     <property id="shabbatProgress" type="boolean">true</property>
+    <property id="screenProtector" type="boolean">true</property>
 
     <!-- Shabbat and zmanim settings. -->
     <property id="location" type="number">0</property>
