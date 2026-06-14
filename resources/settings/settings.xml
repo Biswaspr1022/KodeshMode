@@ -200,51 +200,57 @@
 
     <!-- Mobile-only layout controls. Values are pixel offsets from the built-in layout. -->
     <setting propertyKey="@Properties.clockX" title="@Strings.SettingClockXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.clockY" title="@Strings.SettingClockYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.progressX" title="@Strings.SettingProgressXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.progressY" title="@Strings.SettingProgressYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.omerX" title="@Strings.SettingOmerXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.omerY" title="@Strings.SettingOmerYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.parashaX" title="@Strings.SettingParashaXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.parashaY" title="@Strings.SettingParashaYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.statusX" title="@Strings.SettingStatusXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.statusY" title="@Strings.SettingStatusYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.hebrewDateX" title="@Strings.SettingHebrewDateXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.hebrewDateY" title="@Strings.SettingHebrewDateYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.shabbatTimesX" title="@Strings.SettingShabbatTimesXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.shabbatTimesY" title="@Strings.SettingShabbatTimesYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.batteryX" title="@Strings.SettingBatteryXTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
     <setting propertyKey="@Properties.batteryY" title="@Strings.SettingBatteryYTitle">
-        <settingConfig type="numeric" min="-120" max="120" />
+        <settingConfig type="numeric" min="-500" max="500" />
+    </setting>
+    <setting propertyKey="@Properties.shabbatShalomX" title="@Strings.SettingShabbatShalomXTitle">
+        <settingConfig type="numeric" min="-500" max="500" />
+    </setting>
+    <setting propertyKey="@Properties.shabbatShalomY" title="@Strings.SettingShabbatShalomYTitle">
+        <settingConfig type="numeric" min="-500" max="500" />
     </setting>
 </settings>

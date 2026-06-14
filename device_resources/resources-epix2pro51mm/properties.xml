@@ -5,22 +5,26 @@
     <property id="progressX" type="number">0</property>
     <property id="progressY" type="number">0</property>
     <property id="omerX" type="number">0</property>
-    <property id="omerY" type="number">0</property>
+    <property id="omerY" type="number">250</property>
     <property id="parashaX" type="number">0</property>
     <property id="parashaY" type="number">0</property>
     <property id="statusX" type="number">0</property>
-    <property id="statusY" type="number">0</property>
+    <property id="statusY" type="number">40</property>
     <property id="hebrewDateX" type="number">0</property>
-    <property id="hebrewDateY" type="number">0</property>
+    <property id="hebrewDateY" type="number">-120</property>
     <property id="shabbatTimesX" type="number">0</property>
-    <property id="shabbatTimesY" type="number">0</property>
+    <property id="shabbatTimesY" type="number">10</property>
     <property id="batteryX" type="number">0</property>
-    <property id="batteryY" type="number">0</property>
+    <property id="batteryY" type="number">16</property>
+    <property id="shabbatShalomX" type="number">0</property>
+    <property id="shabbatShalomY" type="number">-20</property>
+    
     
     <!-- Font size overrides for this device -->
-    <property id="clockSize" type="number">36</property>
+    <property id="clockSize" type="number">84</property>
+    <property id="parashaSize" type="number">36</property>
     <property id="hebrewDateSize" type="number">24</property>
-    <property id="parashaSize" type="number">24</property>
-    <property id="shabbatTimesSize" type="number">24</property>
-    <property id="statusSize" type="number">18</property>
+    <property id="omerSize" type="number">28</property>
+    <property id="shabbatTimesSize" type="number">36</property>
+    <property id="statusSize" type="number">36</property>
 </properties>

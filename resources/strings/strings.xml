@@ -193,6 +193,8 @@
     <string id="SettingShabbatTimesYTitle">Mobile Layout - Shabbat Times Y</string>
     <string id="SettingBatteryXTitle">Mobile Layout - Battery X</string>
     <string id="SettingBatteryYTitle">Mobile Layout - Battery Y</string>
+    <string id="SettingShabbatShalomXTitle">Mobile Layout - Shabbat Shalom X</string>
+    <string id="SettingShabbatShalomYTitle">Mobile Layout - Shabbat Shalom Y</string>
     <string id="OptionDigital">Digital</string>
     <string id="OptionAnalog">Analog</string>
     <string id="OptionSystem">System</string>
