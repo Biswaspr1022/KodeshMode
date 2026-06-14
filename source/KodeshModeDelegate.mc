@@ -4,7 +4,7 @@ import Toybox.System;
 
 class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
     private const EXIT_TAPS = 5;
-    private const EXIT_WINDOW_MS = 3000;
+    private const EXIT_WINDOW_MS = 5000; // 5 seconds
     private const EVENT_DEBOUNCE_MS = 500;
 
     private var _exitTapCount as Number = 0;
