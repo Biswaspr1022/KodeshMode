@@ -64,6 +64,7 @@
         <toggle-menu-item id="show_shabbat_times" label="Shabbat Times" />
         <menu-item id="shabbat_times_size" label="Shabbat Times Size" />
         <toggle-menu-item id="show_omer" label="Omer Count" />
+        <menu-item id="omer_size" label="Omer Size" />
         <toggle-menu-item id="force_omer" label="Force Omer (Test)" />
         <toggle-menu-item id="show_battery" label="Battery" />
         <toggle-menu-item id="screen_protector" label="Screen Protector" />
@@ -76,7 +77,17 @@
         <menu-item id="clock_size_52" label="52" />
         <menu-item id="clock_size_68" label="68" />
         <menu-item id="clock_size_84" label="84" />
+    </menu2>
 
+    <menu2 id="OmerSizeMenu" title="Omer Size">
+        <menu-item id="clock_size_12" label="12" />
+        <menu-item id="clock_size_18" label="18" />
+        <menu-item id="clock_size_24" label="24" />
+        <menu-item id="clock_size_28" label="28" />
+        <menu-item id="clock_size_36" label="36" />
+        <menu-item id="clock_size_52" label="52" />
+        <menu-item id="clock_size_68" label="68" />
+        <menu-item id="clock_size_84" label="84" />
     </menu2>
 
     <menu2 id="ParashaSizeMenu" title="Parasha Size">
@@ -98,6 +109,7 @@
         <menu-item id="clock_size_84" label="84" />
 
     </menu2>
+
 
     <menu2 id="LanguageMenu" title="Language">
         <menu-item id="lang_en" label="English" />

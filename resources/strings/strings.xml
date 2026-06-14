@@ -161,6 +161,7 @@
     <string id="SettingShowHebrewDateTitle">Show Hebrew Date</string>
     <string id="SettingHebrewDateSizeTitle">Hebrew Date Size</string>
     <string id="SettingShowOmerTitle">Show Omer Count</string>
+    <string id="SettingOmerSizeTitle">Omer Count Size</string>
     <string id="SettingForceOmerTitle">Force Omer Count (Test)</string>
     <string id="SettingShowBatteryTitle">Show Battery</string>
     <string id="SettingShowShabbatTimesTitle">Show Shabbat Times</string>

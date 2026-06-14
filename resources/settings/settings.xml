@@ -92,6 +92,18 @@
     <setting propertyKey="@Properties.showOmer" title="@Strings.SettingShowOmerTitle">
         <settingConfig type="boolean" />
     </setting>
+    <setting propertyKey="@Properties.omerSize" title="@Strings.SettingOmerSizeTitle">
+        <settingConfig type="list">
+            <listEntry value="12">@Strings.OptionSize12</listEntry>
+            <listEntry value="18">@Strings.OptionSize18</listEntry>
+            <listEntry value="24">@Strings.OptionSize24</listEntry>
+            <listEntry value="28">@Strings.OptionSize28</listEntry>
+            <listEntry value="36">@Strings.OptionSize36</listEntry>
+            <listEntry value="52">@Strings.OptionSize52</listEntry>
+            <listEntry value="68">@Strings.OptionSize68</listEntry>
+            <listEntry value="84">@Strings.OptionSize84</listEntry>
+        </settingConfig>
+    </setting>
     <setting propertyKey="@Properties.forceOmer" title="@Strings.SettingForceOmerTitle">
         <settingConfig type="boolean" />
     </setting>
