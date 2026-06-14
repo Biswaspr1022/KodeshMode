@@ -219,17 +219,17 @@ class GuideView extends WatchUi.View {
             topY += lineH - 2;
             drawHebrewLine(dc, w, topY, "ליציאה:", Graphics.COLOR_LT_GRAY);
             topY += lineH - 4;
-            drawHebrewLine(dc, w, topY, "החזק START", Graphics.COLOR_GREEN);
+            drawHebrewLine(dc, w, topY, "לחץ START", Graphics.COLOR_GREEN);
             topY += lineH - 6;
-            drawHebrewLine(dc, w, topY, "5 שניות", Graphics.COLOR_GREEN);
+            drawHebrewLine(dc, w, topY, "5 פעמים ליציאה", Graphics.COLOR_GREEN);
         } else {
             drawLine(dc, w, topY, "BACK key is blocked", Graphics.COLOR_LT_GRAY);
             topY += lineH;
             drawLine(dc, w, topY, "To exit:", Graphics.COLOR_LT_GRAY);
             topY += lineH - 4;
-            drawLine(dc, w, topY, "Hold START for", Graphics.COLOR_GREEN);
+            drawLine(dc, w, topY, "Press START", Graphics.COLOR_GREEN);
             topY += lineH - 6;
-            drawLine(dc, w, topY, "5 seconds", Graphics.COLOR_GREEN);
+            drawLine(dc, w, topY, "5 times to exit", Graphics.COLOR_GREEN);
         }
     }
 
