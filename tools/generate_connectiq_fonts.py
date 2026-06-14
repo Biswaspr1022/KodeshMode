@@ -4,11 +4,9 @@ import math
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-SIZES = [24, 28, 36, 52, 68, 84]
+SIZES = [12, 18, 22, 24, 28, 30, 36, 44, 52, 60, 68, 76, 84]
 FAMILIES = [
-    ("Varela", "varela", "varela"),
-    ("Stam", "stam", "stam"),
-    ("Simple", "simple", "simple"),
+    ("Varela", "varela", "varela")
 ]
 
 # ASCII source only: build Hebrew chars by Unicode ranges.
@@ -76,7 +74,7 @@ def render_glyph(font, ch, padding):
     if ch == " ":
         advance = max(1, ceil_num(font.getlength(ch)))
         img = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
-        return img, 0, advance
+        return img, 0, 0, advance
 
     # Measure with a temporary draw object. The bbox may have negative offsets.
     probe = Image.new("RGBA", (8, 8), (0, 0, 0, 0))
@@ -94,13 +92,35 @@ def render_glyph(font, ch, padding):
     # is at (padding, padding) in our new image.
     gdraw.text((padding - x0, padding - y0), ch, font=font, fill=(255, 255, 255, 255))
 
-    # xoffset: The distance from the cursor to the left edge of the character image.
-    # Since we drew at (padding - x0), the logical origin (0,0) is at (padding - x0) in the image.
-    # To align the logical origin with the cursor, xoffset = -(padding - x0) = x0 - padding.
+    # Patch the Varela Round "Qof" (ק) letter which has a connecting line
+    # between the two legs. Erase all pixels (including anti-aliased ones)
+    # in the middle third of rows where both legs are present but the
+    # middle is not fully solid.
+    if ch == chr(0x05E7):
+        ALPHA_THRESH = 5  # catch even faint anti-aliased pixels
+        iwidth, iheight = img.size
+        leftmost, rightmost = iwidth, 0
+        for y in range(iheight):
+            for x in range(iwidth):
+                if img.getpixel((x,y))[3] > ALPHA_THRESH:
+                    leftmost, rightmost = min(leftmost, x), max(rightmost, x)
+        if rightmost > leftmost:
+            left_leg_max = leftmost + (rightmost - leftmost) // 3
+            right_leg_min = rightmost - (rightmost - leftmost) // 3
+            for y in range(iheight):
+                has_left = any(img.getpixel((x,y))[3] > ALPHA_THRESH for x in range(leftmost, left_leg_max))
+                has_right = any(img.getpixel((x,y))[3] > ALPHA_THRESH for x in range(right_leg_min, rightmost + 1))
+                if has_left and has_right:
+                    middle_solid = all(img.getpixel((x,y))[3] > 200 for x in range(left_leg_max, right_leg_min))
+                    if not middle_solid:
+                        for x in range(left_leg_max, right_leg_min):
+                            img.putpixel((x,y), (0,0,0,0))
+
     xoffset = x0 - padding
+    yoffset = y0 - padding
     advance = ceil_num(font.getlength(ch))
 
-    return img, xoffset, advance
+    return img, xoffset, yoffset, advance
 
 
 def pack_glyphs(glyphs, atlas_width, padding, line_height):
@@ -116,10 +136,9 @@ def pack_glyphs(glyphs, atlas_width, padding, line_height):
             y += row_h + padding
             row_h = line_height
 
-        yoff = max(0, int((line_height - img.size[1]) / 2))
-        packed.append((rec, x, y + yoff, yoff))
+        packed.append((rec, x, y, rec["yoffset"]))
         x += img.size[0] + padding
-        row_h = max(row_h, img.size[1] + yoff)
+        row_h = max(row_h, img.size[1])
 
     atlas_height = next_power_of_two(y + row_h + padding)
     return packed, atlas_height
@@ -157,7 +176,7 @@ def generate_one(ttf_path, rez_id, file_id, size, fonts_dir, atlas_width, paddin
     max_h = 1
 
     for ch in CHARS:
-        img, xoffset, advance = render_glyph(font, ch, padding)
+        img, xoffset, yoffset, advance = render_glyph(font, ch, padding)
         max_h = max(max_h, img.size[1])
         glyphs.append({
             "char": ch,
@@ -165,6 +184,7 @@ def generate_one(ttf_path, rez_id, file_id, size, fonts_dir, atlas_width, paddin
             "img": img,
             "advance": advance,
             "xoffset": xoffset,
+            "yoffset": yoffset,
         })
 
     line_height = max_h + extra_line_padding

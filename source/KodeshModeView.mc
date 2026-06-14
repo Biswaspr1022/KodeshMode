@@ -1222,6 +1222,15 @@ class KodeshModeView extends WatchUi.View {
             return "";
         }
 
+        var dayStr = getHebrewDayString(heb.day);
+        
+        var isShort = false;
+        try { isShort = KodeshSettings.getBool("shortHebrewDate", false); } catch(ex) {}
+        
+        if (isShort) {
+            return dayStr;
+        }
+
         var monthName = getHebrewMonthString(heb.month, heb.year);
         if (monthName == null || monthName.equals("")) {
             return "";
@@ -1429,7 +1438,6 @@ class KodeshModeView extends WatchUi.View {
         var x = width / 2;
         var primary = Graphics.COLOR_WHITE;
         var secondary = Graphics.COLOR_LT_GRAY;
-        var muted = Graphics.COLOR_DK_GRAY;
         var alert = Graphics.COLOR_YELLOW;
 
         var hebMain = getMipHebrewFont();
@@ -1450,6 +1458,15 @@ class KodeshModeView extends WatchUi.View {
         var timesText = getShabbatTimesText(now);
         var batteryText = getBatteryText();
 
+                if (!ShabbatMode.isEnabled()) {
+            var statusFont = AppFonts.getStatusFont();
+            if (statusFont == null) {
+                statusFont = hebSmall;
+            }
+            drawMipCenteredText(dc, x + getLayoutOffsetX("status"), (height.toFloat() * 0.5f).toNumber() + getLayoutOffsetY("status"), statusFont, statusText, primary);
+            return;
+        }
+
         // Relative layout values are tuned for Instinct 3 Solar 45mm and still
         // scale safely on larger MIP/Fenix/Forerunner screens.
         if (!omerText.equals("")) {
@@ -1465,7 +1482,11 @@ class KodeshModeView extends WatchUi.View {
         }
 
         if (!statusText.equals("")) {
-            drawMipCenteredText(dc, x + getLayoutOffsetX("status"), (height.toFloat() * 0.345f).toNumber() + getLayoutOffsetY("status"), hebSmall, statusText, muted);
+            var statusFont = AppFonts.getStatusFont();
+            if (statusFont == null) {
+                statusFont = hebSmall;
+            }
+            drawMipCenteredText(dc, x + getLayoutOffsetX("status"), (height.toFloat() * 0.345f).toNumber() + getLayoutOffsetY("status"), statusFont, statusText, secondary);
         }
 
         dc.setColor(primary, Graphics.COLOR_TRANSPARENT);
@@ -1482,7 +1503,7 @@ class KodeshModeView extends WatchUi.View {
         }
 
         if (!batteryText.equals("")) {
-            drawMipCenteredText(dc, x + getLayoutOffsetX("battery"), (height.toFloat() * 0.825f).toNumber() + getLayoutOffsetY("battery"), Graphics.FONT_XTINY, batteryText, muted);
+            drawMipCenteredText(dc, x + getLayoutOffsetX("battery"), (height.toFloat() * 0.825f).toNumber() + getLayoutOffsetY("battery"), Graphics.FONT_XTINY, batteryText, secondary);
         }
     }
 

@@ -164,6 +164,7 @@
     <string id="SettingShowBatteryTitle">Show Battery</string>
     <string id="SettingShowShabbatTimesTitle">Show Shabbat Times</string>
     <string id="SettingShabbatTimesSizeTitle">Shabbat Times Size</string>
+    <string id="SettingStatusSizeTitle">Status Font Size</string>
     <string id="SettingShabbatProgressTitle">Show Shabbat Progress</string>
     <string id="SettingScreenProtectorTitle">Screen Protector (Anti Burn)</string>
     <string id="SettingLocationTitle">Location</string>
@@ -196,6 +197,7 @@
     <string id="OptionVarela">Varela</string>
     <string id="OptionStam">Stam</string>
     <string id="OptionSimple">Simple</string>
+    <string id="OptionSize12">12</string>
     <string id="OptionSize18">18</string>
     <string id="OptionSize22">22</string>
     <string id="OptionSize24">24</string>
@@ -245,8 +247,27 @@
     <string id="TextHebrewDateFormat">$1$ ב$2$</string>
     <string id="TextShabbatModeOff">מצב שבת כבוי\nכדי להפעיל לחץ GPS</string>
     <string id="TextShabbatModeOffEn">Shabbat Mode off\nPress GPS to activate</string>
+    <string id="TextShabbatModeOffTiny">מצב שבת\nכבוי\nלהפעלה לחץ GPS</string>
+    <string id="TextShabbatModeOffTinyEn">Shabbat Mode\noff\nPress GPS</string>
+    <string id="TextTurningOnHe">מפעיל מצב שבת...</string>
+    <string id="TextTurningOnEn">Activating Shabbat Mode...</string>
     <string id="TextTouchOffRequired">כבה מגע לפני שבת</string>
     <string id="TextTouchOffRequiredEn">Turn touch off first</string>
+    <string id="TextWarningActivity">כבה את מעקב הפעילות</string>
+    <string id="TextWarningActivityEn">Turn Activity Tracking off</string>
+    <string id="TextWarningActivityTiny">כבה את מעקב\nהפעילות</string>
+    <string id="TextWarningActivityTinyEn">Turn Activity\nTracking off</string>
+
+    <string id="TextWarningBluetooth">כבה את הבלוטות'</string>
+    <string id="TextWarningBluetoothEn">Turn Bluetooth off</string>
+    <string id="TextWarningBluetoothTiny">כבה את\nהבלוטות'</string>
+    <string id="TextWarningBluetoothTinyEn">Turn Bluetooth\noff</string>
+
+    <string id="TextWarningConnections">כבה את החיבורים</string>
+    <string id="TextWarningConnectionsEn">Turn connections off</string>
+    <string id="TextWarningConnectionsTiny">כבה את\nהחיבורים</string>
+    <string id="TextWarningConnectionsTinyEn">Turn connections\noff</string>
+
     <string id="TextSettingsOnPhone">הגדרות דרך הטלפון</string>
     <string id="TextSettingsOnPhoneEn">Settings are on the phone</string>
 

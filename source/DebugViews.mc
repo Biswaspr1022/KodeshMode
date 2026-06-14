@@ -90,7 +90,15 @@ class GuideView extends WatchUi.View {
 
     function initialize() {
         View.initialize();
-        _hebrewFont = AppFonts.getHebrewTextFont();
+        var sys = System.getDeviceSettings();
+        if (sys.screenWidth <= 200) {
+            _hebrewFont = AppFonts.getCustomFontForFamilyAndSize("varela", "clock_size_18");
+            if (_hebrewFont == null) {
+                _hebrewFont = AppFonts.getHebrewTextFont();
+            }
+        } else {
+            _hebrewFont = AppFonts.getHebrewTextFont();
+        }
     }
 
     function getPage() as Number { return _page; }

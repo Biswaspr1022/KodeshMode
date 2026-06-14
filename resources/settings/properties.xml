@@ -11,11 +11,13 @@
     <property id="showParasha" type="boolean">true</property>
     <property id="showHebrewDate" type="boolean">true</property>
     <property id="hebrewDateSize" type="number">24</property>
+    <property id="shortHebrewDate" type="boolean">false</property>
     <property id="showOmer" type="boolean">true</property>
     <property id="showBattery" type="boolean">false</property>
     <property id="parashaSize" type="number">24</property>
     <property id="showShabbatTimes" type="boolean">false</property>
     <property id="shabbatTimesSize" type="number">24</property>
+    <property id="statusSize" type="number">8</property>
     <property id="shabbatProgress" type="boolean">true</property>
     <property id="screenProtector" type="boolean">true</property>
 

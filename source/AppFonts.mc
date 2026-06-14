@@ -14,6 +14,8 @@ module AppFonts {
     var mHebrewDateFontKey as String = "";
     var mShabbatTimesFont = null;
     var mShabbatTimesFontKey as String = "";
+    var mStatusFont = null;
+    var mStatusFontKey as String = "";
 
     function clearCustomFontCache() as Void {
         mClockFont = null;
@@ -26,6 +28,8 @@ module AppFonts {
         mHebrewDateFontKey = "";
         mShabbatTimesFont = null;
         mShabbatTimesFontKey = "";
+        mStatusFont = null;
+        mStatusFontKey = "";
     }
 
     function releaseLoadedFonts() as Void {
@@ -74,7 +78,9 @@ module AppFonts {
     function normalizeClockSize(value as String) as String {
         // Keep only six bitmap font sizes to reduce the compiled PRG size.
         // Legacy values are mapped to the nearest supported size.
-        if (value.equals("clock_size_24") || value.equals("24") || value.equals("22") || value.equals("18") || value.equals("clock_size_22") || value.equals("clock_size_18") || value.equals("clock_size_small")) { return "clock_size_24"; }
+        if (value.equals("clock_size_12") || value.equals("12")) { return "clock_size_12"; }
+        if (value.equals("clock_size_18") || value.equals("18")) { return "clock_size_18"; }
+        if (value.equals("clock_size_24") || value.equals("24") || value.equals("22") || value.equals("clock_size_22") || value.equals("clock_size_small")) { return "clock_size_24"; }
         if (value.equals("clock_size_28") || value.equals("28") || value.equals("30") || value.equals("clock_size_30")) { return "clock_size_28"; }
         if (value.equals("clock_size_36") || value.equals("36") || value.equals("clock_size_medium")) { return "clock_size_36"; }
         if (value.equals("clock_size_52") || value.equals("52") || value.equals("44") || value.equals("clock_size_44") || value.equals("clock_size_large")) { return "clock_size_52"; }
@@ -156,6 +162,8 @@ module AppFonts {
     function getSizeLabelForMode(value as String) as String {
         var normalized = normalizeClockSize(value);
 
+        if (normalized.equals("clock_size_12")) { return "12"; }
+        if (normalized.equals("clock_size_18")) { return "18"; }
         if (normalized.equals("clock_size_24")) { return "24"; }
         if (normalized.equals("clock_size_28")) { return "28"; }
         if (normalized.equals("clock_size_36")) { return "36"; }
@@ -190,9 +198,19 @@ module AppFonts {
         return getSizeLabelForMode(getHebrewDateSizeMode());
     }
 
+    function getStatusSizeMode() as String {
+        return getSizeModeForKey("statusSize", "clock_size_8");
+    }
+
+    function getStatusSizeLabel() as String {
+        return getSizeLabelForMode(getStatusSizeMode());
+    }
+
     function resourceForFont(family as String, sizeMode as String) {
         var size = normalizeClockSize(sizeMode);
 
+        if (size.equals("clock_size_12")) { return WatchUi.loadResource(Rez.Fonts.Varela12); }
+        if (size.equals("clock_size_18")) { return WatchUi.loadResource(Rez.Fonts.Varela18); }
         if (size.equals("clock_size_24")) { return WatchUi.loadResource(Rez.Fonts.Varela24); }
         if (size.equals("clock_size_28")) { return WatchUi.loadResource(Rez.Fonts.Varela28); }
         if (size.equals("clock_size_36")) { return WatchUi.loadResource(Rez.Fonts.Varela36); }
@@ -260,11 +278,19 @@ module AppFonts {
             return mHebrewDateFont;
         }
 
-        if (mShabbatTimesFont != null && mShabbatTimesFontKey.equals(key)) { return mShabbatTimesFont; }
-        mShabbatTimesFont = null;
-        mShabbatTimesFontKey = key;
-        mShabbatTimesFont = resourceForFont(family, sizeMode);
-        return mShabbatTimesFont;
+        if (role.equals("shabbatTimes")) {
+            if (mShabbatTimesFont != null && mShabbatTimesFontKey.equals(key)) { return mShabbatTimesFont; }
+            mShabbatTimesFont = null;
+            mShabbatTimesFontKey = key;
+            mShabbatTimesFont = resourceForFont(family, sizeMode);
+            return mShabbatTimesFont;
+        }
+
+        if (mStatusFont != null && mStatusFontKey.equals(key)) { return mStatusFont; }
+        mStatusFont = null;
+        mStatusFontKey = key;
+        mStatusFont = resourceForFont(family, sizeMode);
+        return mStatusFont;
     }
 
     function getCustomFontForFamilyAndSize(family as String, sizeMode as String) {
@@ -293,6 +319,10 @@ module AppFonts {
 
     function getHebrewDateFont() {
         return getRoleFont("hebrewDate", "varela", getHebrewDateSizeMode());
+    }
+
+    function getStatusFont() {
+        return getRoleFont("status", "varela", getStatusSizeMode());
     }
 
     function getHebrewTextFont() {

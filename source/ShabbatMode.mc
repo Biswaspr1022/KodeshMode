@@ -57,10 +57,11 @@ module ShabbatMode {
     }
 
     function shabbatModeOffText() as String {
+        var tiny = isTinyScreen();
         if (isHebrew()) {
-            return loadTextResource(Rez.Strings.TextShabbatModeOff);
+            return loadTextResource(tiny ? Rez.Strings.TextShabbatModeOffTiny : Rez.Strings.TextShabbatModeOff);
         }
-        return loadTextResource(Rez.Strings.TextShabbatModeOffEn);
+        return loadTextResource(tiny ? Rez.Strings.TextShabbatModeOffTinyEn : Rez.Strings.TextShabbatModeOffEn);
     }
 
     function touchOffRequiredText() as String {
@@ -75,6 +76,35 @@ module ShabbatMode {
             return loadTextResource(Rez.Strings.TextSettingsOnPhone);
         }
         return loadTextResource(Rez.Strings.TextSettingsOnPhoneEn);
+    }
+
+    function isTinyScreen() as Boolean {
+        var settings = System.getDeviceSettings();
+        return settings != null && settings.screenWidth <= 176;
+    }
+
+    function warningActivityText() as String {
+        var tiny = isTinyScreen();
+        if (isHebrew()) {
+            return loadTextResource(tiny ? Rez.Strings.TextWarningActivityTiny : Rez.Strings.TextWarningActivity);
+        }
+        return loadTextResource(tiny ? Rez.Strings.TextWarningActivityTinyEn : Rez.Strings.TextWarningActivityEn);
+    }
+
+    function warningBluetoothText() as String {
+        var tiny = isTinyScreen();
+        if (isHebrew()) {
+            return loadTextResource(tiny ? Rez.Strings.TextWarningBluetoothTiny : Rez.Strings.TextWarningBluetooth);
+        }
+        return loadTextResource(tiny ? Rez.Strings.TextWarningBluetoothTinyEn : Rez.Strings.TextWarningBluetoothEn);
+    }
+
+    function warningConnectionsText() as String {
+        var tiny = isTinyScreen();
+        if (isHebrew()) {
+            return loadTextResource(tiny ? Rez.Strings.TextWarningConnectionsTiny : Rez.Strings.TextWarningConnections);
+        }
+        return loadTextResource(tiny ? Rez.Strings.TextWarningConnectionsTinyEn : Rez.Strings.TextWarningConnectionsEn);
     }
 
     // User-defined touch profile. Garmin does not expose a reliable, universal
@@ -311,17 +341,17 @@ module ShabbatMode {
         }
 
         if (settings has :activityTrackingOn && settings.activityTrackingOn) {
-            setStatus("Turn Activity Tracking off");
+            setStatus(warningActivityText());
             return false;
         }
 
         if (settings has :phoneConnected && settings.phoneConnected) {
-            setStatus("Turn Bluetooth off");
+            setStatus(warningBluetoothText());
             return false;
         }
 
         if (settings has :connectionAvailable && settings.connectionAvailable) {
-            setStatus("Turn connections off");
+            setStatus(warningConnectionsText());
             return false;
         }
 

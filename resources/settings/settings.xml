@@ -17,6 +17,8 @@
 
     <setting propertyKey="@Properties.clockSize" title="@Strings.SettingClockSizeTitle">
         <settingConfig type="list">
+            <listEntry value="12">@Strings.OptionSize12</listEntry>
+            <listEntry value="18">@Strings.OptionSize18</listEntry>
             <listEntry value="24">@Strings.OptionSize24</listEntry>
             <listEntry value="28">@Strings.OptionSize28</listEntry>
             <listEntry value="36">@Strings.OptionSize36</listEntry>
@@ -58,6 +60,8 @@
     </setting>
     <setting propertyKey="@Properties.parashaSize" title="@Strings.SettingParashaSizeTitle">
         <settingConfig type="list">
+            <listEntry value="12">@Strings.OptionSize12</listEntry>
+            <listEntry value="18">@Strings.OptionSize18</listEntry>
             <listEntry value="24">@Strings.OptionSize24</listEntry>
             <listEntry value="28">@Strings.OptionSize28</listEntry>
             <listEntry value="36">@Strings.OptionSize36</listEntry>
@@ -73,6 +77,8 @@
     </setting>
     <setting propertyKey="@Properties.hebrewDateSize" title="@Strings.SettingHebrewDateSizeTitle">
         <settingConfig type="list">
+            <listEntry value="12">@Strings.OptionSize12</listEntry>
+            <listEntry value="18">@Strings.OptionSize18</listEntry>
             <listEntry value="24">@Strings.OptionSize24</listEntry>
             <listEntry value="28">@Strings.OptionSize28</listEntry>
             <listEntry value="36">@Strings.OptionSize36</listEntry>
@@ -94,6 +100,8 @@
     </setting>
     <setting propertyKey="@Properties.shabbatTimesSize" title="@Strings.SettingShabbatTimesSizeTitle">
         <settingConfig type="list">
+            <listEntry value="12">@Strings.OptionSize12</listEntry>
+            <listEntry value="18">@Strings.OptionSize18</listEntry>
             <listEntry value="24">@Strings.OptionSize24</listEntry>
             <listEntry value="28">@Strings.OptionSize28</listEntry>
             <listEntry value="36">@Strings.OptionSize36</listEntry>
@@ -101,6 +109,19 @@
             <listEntry value="68">@Strings.OptionSize68</listEntry>
             <listEntry value="84">@Strings.OptionSize84</listEntry>
 
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.statusSize" title="@Strings.SettingStatusSizeTitle">
+        <settingConfig type="list">
+            <listEntry value="12">@Strings.OptionSize12</listEntry>
+            <listEntry value="18">@Strings.OptionSize18</listEntry>
+            <listEntry value="22">@Strings.OptionSize22</listEntry>
+            <listEntry value="24">@Strings.OptionSize24</listEntry>
+            <listEntry value="28">@Strings.OptionSize28</listEntry>
+            <listEntry value="36">@Strings.OptionSize36</listEntry>
+            <listEntry value="52">@Strings.OptionSize52</listEntry>
+            <listEntry value="68">@Strings.OptionSize68</listEntry>
+            <listEntry value="84">@Strings.OptionSize84</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.shabbatProgress" title="@Strings.SettingShabbatProgressTitle">

@@ -1,8 +1,15 @@
 <resources>
+    <font id="Varela12" filename="fonts/varela_12.fnt" antialias="true" />
+    <font id="Varela18" filename="fonts/varela_18.fnt" antialias="true" />
+    <font id="Varela22" filename="fonts/varela_22.fnt" antialias="true" />
     <font id="Varela24" filename="fonts/varela_24.fnt" antialias="true" />
     <font id="Varela28" filename="fonts/varela_28.fnt" antialias="true" />
+    <font id="Varela30" filename="fonts/varela_30.fnt" antialias="true" />
     <font id="Varela36" filename="fonts/varela_36.fnt" antialias="true" />
+    <font id="Varela44" filename="fonts/varela_44.fnt" antialias="true" />
     <font id="Varela52" filename="fonts/varela_52.fnt" antialias="true" />
+    <font id="Varela60" filename="fonts/varela_60.fnt" antialias="true" />
     <font id="Varela68" filename="fonts/varela_68.fnt" antialias="true" />
+    <font id="Varela76" filename="fonts/varela_76.fnt" antialias="true" />
     <font id="Varela84" filename="fonts/varela_84.fnt" antialias="true" />
 </resources>

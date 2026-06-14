@@ -3,12 +3,8 @@ import Toybox.WatchUi;
 import Toybox.System;
 
 class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
-    private const EXIT_TAPS = 5;
-    private const EXIT_WINDOW_MS = 5000; // 5 seconds
     private const EVENT_DEBOUNCE_MS = 500;
 
-    private var _exitTapCount as Number = 0;
-    private var _exitWindowStart as Number = 0;
     private var _lastKeyTime as Number = 0;
 
     function initialize() {
@@ -60,34 +56,20 @@ class KodeshModeDelegate extends WatchUi.BehaviorDelegate {
         _lastKeyTime = now;
 
         if (ShabbatMode.isEnabled()) {
-            if (_exitWindowStart == 0 || (now - _exitWindowStart) > EXIT_WINDOW_MS) {
-                _exitTapCount = 0;
-                _exitWindowStart = now;
-            }
-
-            _exitTapCount++;
-
-            if (_exitTapCount >= EXIT_TAPS) {
-                _exitTapCount = 0;
-                _exitWindowStart = 0;
-                ShabbatMode.disable();
-                WatchUi.requestUpdate();
-                return;
-            }
-
-            if (ShabbatMode.isHebrew()) {
-                ShabbatMode.setStatus(WatchUi.loadResource(Rez.Strings.TextExitProgressHe) + _exitTapCount + "/" + EXIT_TAPS);
-            } else {
-                ShabbatMode.setStatus(WatchUi.loadResource(Rez.Strings.TextExitProgressEn) + _exitTapCount + "/" + EXIT_TAPS);
-            }
-            WatchUi.requestUpdate();
+            var exitView = new ShabbatExitView(1);
+            WatchUi.pushView(exitView, new ShabbatExitDelegate(exitView, 1), WatchUi.SLIDE_IMMEDIATE);
         } else {
             var enabled = ShabbatMode.enable();
             if (!enabled) {
-                openGuide();
+                var sys = System.getDeviceSettings();
+                if (sys has :requiresBurnInProtection && sys.requiresBurnInProtection) {
+                    openGuide();
+                } else {
+                    WatchUi.requestUpdate();
+                }
                 return;
             }
-            WatchUi.requestUpdate();
+            WatchUi.pushView(new ShabbatTransitionView(), null, WatchUi.SLIDE_IMMEDIATE);
         }
     }
 
